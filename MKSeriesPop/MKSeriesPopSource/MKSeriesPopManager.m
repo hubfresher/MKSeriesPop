@@ -9,5 +9,20 @@
 #import "MKSeriesPopManager.h"
 
 @implementation MKSeriesPopManager
+-(instancetype)initSeriesPopManager{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+-(void)addPop{
+    
+}
 
+-(void)nextPop{
+    
+}
+-(void)clearAllPop{
+    
+}
 @end

@@ -11,7 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MKSeriesPopManager : NSObject
-
+-(instancetype)initSeriesPopManager;
+//push
+-(void)addPop;
+//pop
+-(void)nextPop;
+//clear
+-(void)clearAllPop;
 @end
 
 NS_ASSUME_NONNULL_END
