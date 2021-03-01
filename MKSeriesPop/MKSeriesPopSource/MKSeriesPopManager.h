@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MKSeriesPopManager : NSObject
+//不使用singleton了
 - (instancetype)initSeriesPopManager;
 
 //pop
