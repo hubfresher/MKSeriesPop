@@ -1,2 +1,2 @@
 # MKSeriesPop
-multiple pop view. series.
+multiple pop/alert queue. series.
