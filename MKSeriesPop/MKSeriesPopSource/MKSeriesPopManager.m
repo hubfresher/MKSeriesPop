@@ -7,22 +7,34 @@
 //
 
 #import "MKSeriesPopManager.h"
-
+@interface MKSeriesPopManager()
+@property (nonatomic,strong)NSOperationQueue *popQueue;
+@end
 @implementation MKSeriesPopManager
--(instancetype)initSeriesPopManager{
+
+- (instancetype)initSeriesPopManager {
     if (self = [super init]) {
-        
+        _popQueue = [[NSOperationQueue alloc] init];
+        _popQueue.name = @"com.queue.pop";
+        _popQueue.maxConcurrentOperationCount = 1;
     }
     return self;
 }
--(void)addPop{
-    
+- (void)addPopActionWithBlock:(void(^)(void))popAction {
+    __weak typeof(MKSeriesPopManager *)weakSelf = self;
+    NSBlockOperation * popOp = [NSBlockOperation blockOperationWithBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^(){
+            popAction();
+        });
+        [weakSelf.popQueue setSuspended:YES];
+    }];
+    [_popQueue addOperation:popOp];
 }
 
--(void)nextPop{
-    
+- (void)nextPop {
+    [_popQueue setSuspended:NO];
 }
--(void)clearAllPop{
-    
+- (void)clearAllPop {
+    [_popQueue cancelAllOperations];
 }
 @end
